@@ -240,10 +240,6 @@ label {
 	color: white;
 }
 
-.login-izq ul {
-	margin-top: 30px;
-	line-height: 2;
-}
 
 .login-der {
 	flex-grow: 1;

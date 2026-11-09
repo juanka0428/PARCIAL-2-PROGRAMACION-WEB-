@@ -11,11 +11,6 @@
 		<div class="login-izq">
 			<h1>ECO<span>SALUD</span></h1>
 			<p>Sistema para la gestión de consultas médicas.</p>
-			<ul>
-				<li>El administrador registra médicos y consultorios</li>
-				<li>El médico revisa sus consultas</li>
-				<li>El paciente consulta y cambia el horario de sus citas</li>
-			</ul>
 		</div>
 
 		<div class="login-der">
