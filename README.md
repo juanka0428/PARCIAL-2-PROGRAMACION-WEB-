@@ -1,51 +1,25 @@
-# ECOSALUD - Gestión de consultas médicas
+# ECOSALUD
 
-Aplicación web en Spring Boot para gestionar consultas médicas con tres roles: ADMIN, MEDICO y PACIENTE.
+Aplicación web para gestionar consultas médicas, hecha con Spring Boot, JPA, Spring Security, PostgreSQL, JSP y Swagger.
 
-Tecnologías: Spring Boot 3.5, Spring Security (roles desde la base de datos y BCrypt), JPA, PostgreSQL, JSP, Bootstrap y Swagger.
+Tiene tres roles:
 
-## Qué puede hacer cada rol
-
-- **ADMIN**: crear, editar y eliminar médicos, y registrar consultorios (consultas) con nombre del paciente, motivo, número de consultorio, horario y médico.
-- **MEDICO**: solo ve las consultas que tiene asignadas, sin acciones.
-- **PACIENTE**: ve sus citas y puede cambiar el horario solo de las suyas.
-
-Si un usuario entra a algo que no le corresponde se muestra la página de acceso denegado (403).
+- Administrador: crea, edita y elimina médicos y registra los consultorios.
+- Médico: solo ve sus consultas.
+- Paciente: ve sus citas y puede cambiar el horario.
 
 ## Cómo ejecutarlo
 
-1. Crear la base en PostgreSQL ejecutando el script (pide la clave del usuario postgres):
-   ```
-   psql -U postgres -f sql/script.sql
-   ```
-2. En `src/main/resources/application.properties` cambiar `TU_CLAVE` por la clave del usuario postgres.
-3. En Eclipse: *Import → Existing Maven Projects* y luego *Run As → Spring Boot App*.
-4. Abrir `http://localhost:8080/login`
+1. Ejecutar el archivo sql/script.sql en PostgreSQL para crear la base de datos.
+2. En application.properties poner la clave de postgres donde dice TU_CLAVE.
+3. Abrir el proyecto en Eclipse y correrlo como Spring Boot App.
+4. Entrar a http://localhost:8080/login
+
+La documentación de los servicios está en http://localhost:8080/swagger-ui/index.html
 
 ## Usuarios de prueba
 
-| Usuario | Clave | Rol |
-|---|---|---|
-| administrador | admin2026 | ADMIN |
-| juanmayor | juan2026 | MEDICO |
-| diego | diego2026 | MEDICO |
-| sofia | paciente2026 | PACIENTE |
-| mateo | paciente2026 | PACIENTE |
-| camila | paciente2026 | PACIENTE |
-
-Nota: las citas del paciente se buscan por su nombre, entonces al registrar una consulta el nombre del paciente debe ser igual al nombre del usuario (ej: `Sofia Herrera`).
-
-## Swagger
-
-`http://localhost:8080/swagger-ui/index.html`
-
-Primero se da clic en **Authorize** y se pone un usuario de la tabla. Sin credenciales los servicios responden 401 y con un rol sin permiso responden 403.
-
-| Método | Ruta | Rol |
-|---|---|---|
-| GET, POST | /api/medicos | ADMIN |
-| GET, PUT, DELETE | /api/medicos/{id} | ADMIN |
-| GET, POST | /api/consultas | ADMIN |
-| GET, PUT, DELETE | /api/consultas/{id} | ADMIN |
-| GET | /api/consultas/mis-consultas | MEDICO, PACIENTE |
-| PUT | /api/consultas/{id}/horario | PACIENTE (solo sus citas) |
+- administrador / admin2026
+- juanmayor / juan2026 (médico)
+- diego / diego2026 (médico)
+- sofia, mateo y camila / paciente2026 (pacientes)
