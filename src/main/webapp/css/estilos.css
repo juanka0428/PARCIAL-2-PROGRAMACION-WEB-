@@ -1,0 +1,76 @@
+/* estilos de ecosalud */
+
+body {
+	background-color: #f1f4f3;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.barra {
+	background-color: #18564a;
+	border-bottom: 4px solid #ffe100;
+}
+
+.barra .navbar-brand {
+	color: #ffe100;
+}
+
+.barra .nav-link {
+	color: white;
+}
+
+.barra .nav-link:hover {
+	color: #ffe100;
+}
+
+.btn-verde {
+	background-color: #18564a;
+	color: white;
+}
+
+.btn-verde:hover {
+	background-color: #0f3f36;
+	color: #ffe100;
+}
+
+.tarjeta {
+	background-color: white;
+	border: 1px solid #dddddd;
+	border-radius: 4px;
+	padding: 20px;
+}
+
+.titulo {
+	color: #18564a;
+}
+
+.tabla thead th {
+	background-color: #18564a;
+	color: white;
+}
+
+.consultorio {
+	font-weight: bold;
+}
+
+/* login */
+.caja-login {
+	margin-top: 80px;
+	border: none;
+}
+
+.caja-login .card-header {
+	background-color: #18564a;
+	border-bottom: 4px solid #ffe100;
+	padding: 20px;
+}
+
+.logo {
+	color: #ffe100;
+	font-weight: bold;
+	letter-spacing: 2px;
+	margin: 0;
+}
+
+.logo span {
+	color: white;
+}
