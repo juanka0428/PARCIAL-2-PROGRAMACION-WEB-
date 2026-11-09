@@ -1,76 +1,284 @@
 /* estilos de ecosalud */
 
 body {
-	background-color: #f1f4f3;
+	margin: 0;
+	background-color: #eef1f0;
 	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #333;
 }
 
-.barra {
+/* estructura: menu a la izquierda y contenido a la derecha */
+.pagina {
+	display: flex;
+	min-height: 100vh;
+}
+
+.menu {
+	width: 220px;
 	background-color: #18564a;
-	border-bottom: 4px solid #ffe100;
+	color: white;
+	flex-shrink: 0;
 }
 
-.barra .navbar-brand {
+.menu .nombre {
+	font-size: 22px;
+	font-weight: bold;
 	color: #ffe100;
+	padding: 20px;
+	border-bottom: 1px solid #2c6e61;
 }
 
-.barra .nav-link {
+.menu .nombre span {
 	color: white;
 }
 
-.barra .nav-link:hover {
-	color: #ffe100;
+.menu .usuario {
+	padding: 15px 20px;
+	font-size: 13px;
+	background-color: #124238;
 }
 
-.btn-verde {
+.menu .usuario b {
+	display: block;
+	font-size: 15px;
+}
+
+.menu ul {
+	list-style: none;
+	padding: 0;
+	margin: 10px 0;
+}
+
+.menu ul li a {
+	display: block;
+	color: white;
+	text-decoration: none;
+	padding: 10px 20px;
+	border-left: 4px solid transparent;
+}
+
+.menu ul li a:hover {
+	background-color: #124238;
+	border-left: 4px solid #ffe100;
+}
+
+.menu .salir {
+	margin: 20px;
+}
+
+.menu .salir button {
+	width: 100%;
+	background: none;
+	border: 1px solid #ffe100;
+	color: #ffe100;
+	padding: 6px;
+	cursor: pointer;
+}
+
+.menu .salir button:hover {
+	background-color: #ffe100;
+	color: #18564a;
+}
+
+.contenido {
+	flex-grow: 1;
+	padding: 25px 35px;
+	display: flex;
+	flex-direction: column;
+}
+
+.contenido h2 {
+	color: #18564a;
+	font-size: 24px;
+	padding-bottom: 8px;
+	border-bottom: 3px solid #ffe100;
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+.caja {
+	background-color: white;
+	padding: 20px;
+	border: 1px solid #d5dbd9;
+}
+
+.pie {
+	margin-top: auto;
+	padding-top: 30px;
+	font-size: 12px;
+	color: #888;
+}
+
+/* botones */
+.boton {
+	display: inline-block;
 	background-color: #18564a;
 	color: white;
+	border: none;
+	padding: 7px 14px;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 14px;
 }
 
-.btn-verde:hover {
+.boton:hover {
 	background-color: #0f3f36;
 	color: #ffe100;
 }
 
-.tarjeta {
-	background-color: white;
-	border: 1px solid #dddddd;
-	border-radius: 4px;
-	padding: 20px;
+.boton-gris {
+	background-color: #8a9592;
 }
 
-.titulo {
+.boton-rojo {
+	background-color: #c0392b;
+}
+
+.boton-amarillo {
+	background-color: #ffe100;
 	color: #18564a;
 }
 
-.tabla thead th {
+.boton-chico {
+	padding: 3px 9px;
+	font-size: 13px;
+}
+
+/* mensajes */
+.aviso {
+	background-color: #e6f2ef;
+	border-left: 5px solid #18564a;
+	padding: 10px 15px;
+	margin-bottom: 15px;
+}
+
+.aviso-error {
+	background-color: #fbeaea;
+	border-left: 5px solid #c0392b;
+	padding: 10px 15px;
+	margin-bottom: 15px;
+}
+
+/* tablas */
+.tabla {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: white;
+}
+
+.tabla th {
 	background-color: #18564a;
 	color: white;
+	text-align: left;
+	padding: 9px;
+	font-weight: normal;
+}
+
+.tabla td {
+	padding: 8px 9px;
+	border-bottom: 1px solid #e1e5e4;
+}
+
+.tabla tr:nth-child(even) td {
+	background-color: #f6f8f7;
 }
 
 .consultorio {
 	font-weight: bold;
+	color: #18564a;
+}
+
+/* formularios */
+fieldset {
+	border: 1px solid #c9d1ce;
+	padding: 15px 20px 20px 20px;
+	background-color: white;
+}
+
+legend {
+	float: none;
+	width: auto;
+	padding: 0 8px;
+	font-size: 17px;
+	color: #18564a;
+	font-weight: bold;
+}
+
+label {
+	font-weight: bold;
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.ayuda {
+	font-size: 12px;
+	color: #888;
 }
 
 /* login */
-.caja-login {
-	margin-top: 80px;
-	border: none;
+.login {
+	display: flex;
+	min-height: 100vh;
 }
 
-.caja-login .card-header {
+.login-izq {
+	width: 45%;
 	background-color: #18564a;
-	border-bottom: 4px solid #ffe100;
-	padding: 20px;
-}
-
-.logo {
-	color: #ffe100;
-	font-weight: bold;
-	letter-spacing: 2px;
-	margin: 0;
-}
-
-.logo span {
 	color: white;
+	padding: 60px;
+	border-right: 6px solid #ffe100;
+}
+
+.login-izq h1 {
+	color: #ffe100;
+	font-size: 48px;
+	font-weight: bold;
+}
+
+.login-izq h1 span {
+	color: white;
+}
+
+.login-izq ul {
+	margin-top: 30px;
+	line-height: 2;
+}
+
+.login-der {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+}
+
+.login-der form {
+	width: 320px;
+}
+
+.login-der h3 {
+	color: #18564a;
+	margin-bottom: 20px;
+}
+
+/* en celular el menu queda arriba */
+@media (max-width: 768px) {
+	.pagina, .login {
+		flex-direction: column;
+	}
+	.menu, .login-izq {
+		width: 100%;
+	}
+	.login-izq {
+		padding: 30px;
+		border-right: none;
+		border-bottom: 6px solid #ffe100;
+	}
+	.contenido {
+		padding: 20px;
+	}
+	.tabla {
+		font-size: 13px;
+	}
 }

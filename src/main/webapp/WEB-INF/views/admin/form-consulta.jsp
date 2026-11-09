@@ -7,66 +7,70 @@
 <%@ include file="/WEB-INF/views/cabecera.jsp"%>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/encabezado.jsp"%>
-	<div class="container" style="max-width: 650px">
-		<div class="tarjeta">
+	<div class="pagina">
+		<%@ include file="/WEB-INF/views/encabezado.jsp"%>
+		<div class="contenido">
 			<c:choose>
 				<c:when test="${consulta.id == null}">
-					<h4 class="titulo">Registrar consultorio</h4>
+					<div><h2>Registrar consultorio</h2></div>
 				</c:when>
 				<c:otherwise>
-					<h4 class="titulo">Editar consulta</h4>
+					<div><h2>Editar consulta #${consulta.id}</h2></div>
 				</c:otherwise>
 			</c:choose>
-			<hr>
 
 			<c:if test="${error != null}">
-				<div class="alert alert-danger">${error}</div>
+				<div class="aviso-error">${error}</div>
 			</c:if>
 
-			<form action="/admin/consultas/guardar" method="post" onsubmit="return validarConsulta()">
+			<form action="/admin/consultas/guardar" method="post" onsubmit="return validarConsulta()" style="max-width: 650px">
 				<input type="hidden" name="id" value="${consulta.id}">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
-				<div class="mb-3">
-					<label class="form-label">Nombre del paciente</label>
+				<fieldset>
+					<legend>Datos de la consulta</legend>
+
+					<label for="nombrePaciente">Nombre del paciente</label>
 					<input type="text" name="nombrePaciente" id="nombrePaciente" class="form-control" maxlength="40"
 						value="${consulta.nombrePaciente}">
-					<small class="text-muted">Máximo 40 caracteres</small>
-				</div>
-				<div class="mb-3">
-					<label class="form-label">Motivo de la consulta</label>
+					<span class="ayuda">Máximo 40 caracteres</span>
+					<br>
+
+					<label for="motivo">Motivo de la consulta</label>
 					<textarea name="motivo" id="motivo" class="form-control" maxlength="100" rows="2">${consulta.motivo}</textarea>
-					<small class="text-muted">Máximo 100 caracteres</small>
-				</div>
-				<div class="row">
-					<div class="col-md-4 mb-3">
-						<label class="form-label">Consultorio</label>
-						<input type="number" name="numeroConsultorio" id="numeroConsultorio" class="form-control" min="1"
-							value="${consulta.numeroConsultorio}">
+					<span class="ayuda">Máximo 100 caracteres</span>
+
+					<div class="row">
+						<div class="col-md-4">
+							<label for="numeroConsultorio">Consultorio</label>
+							<input type="number" name="numeroConsultorio" id="numeroConsultorio" class="form-control" min="1"
+								value="${consulta.numeroConsultorio}">
+						</div>
+						<div class="col-md-4">
+							<label for="horaInicio">Hora inicio</label>
+							<input type="time" name="horaInicio" id="horaInicio" class="form-control" value="${consulta.horaInicio}">
+						</div>
+						<div class="col-md-4">
+							<label for="horaFin">Hora fin</label>
+							<input type="time" name="horaFin" id="horaFin" class="form-control" value="${consulta.horaFin}">
+						</div>
 					</div>
-					<div class="col-md-4 mb-3">
-						<label class="form-label">Hora inicio</label>
-						<input type="time" name="horaInicio" id="horaInicio" class="form-control" value="${consulta.horaInicio}">
-					</div>
-					<div class="col-md-4 mb-3">
-						<label class="form-label">Hora fin</label>
-						<input type="time" name="horaFin" id="horaFin" class="form-control" value="${consulta.horaFin}">
-					</div>
-				</div>
-				<div class="mb-4">
-					<label class="form-label">Médico</label>
+
+					<label for="medico">Médico</label>
 					<select name="medico.id" id="medico" class="form-select">
 						<option value="">-- Seleccione --</option>
 						<c:forEach var="m" items="${medicos}">
-							<option value="${m.id}" ${consulta.medico.id == m.id ? 'selected' : ''}>${m.nombre} (${m.especialidad})</option>
+							<option value="${m.id}" ${consulta.medico.id == m.id ? 'selected' : ''}>${m.nombre} - ${m.especialidad}</option>
 						</c:forEach>
 					</select>
-				</div>
+				</fieldset>
 
-				<button type="submit" class="btn btn-verde">Guardar</button>
-				<a href="/admin/consultas" class="btn btn-outline-secondary">Cancelar</a>
+				<p style="margin-top: 15px">
+					<button type="submit" class="boton">Guardar</button>
+					<a href="/admin/consultas" class="boton boton-gris">Cancelar</a>
+				</p>
 			</form>
+			<%@ include file="/WEB-INF/views/pie.jsp"%>
 		</div>
 	</div>
 	<script src="/js/validaciones.js"></script>

@@ -7,37 +7,44 @@
 <%@ include file="/WEB-INF/views/cabecera.jsp"%>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/encabezado.jsp"%>
-	<div class="container" style="max-width: 550px">
-		<div class="tarjeta">
-			<h4 class="titulo">Cambiar horario de la cita</h4>
-			<hr>
+	<div class="pagina">
+		<%@ include file="/WEB-INF/views/encabezado.jsp"%>
+		<div class="contenido">
+			<div><h2>Cambiar horario</h2></div>
 
 			<c:if test="${error != null}">
-				<div class="alert alert-danger">${error}</div>
+				<div class="aviso-error">${error}</div>
 			</c:if>
 
-			<ul class="list-group mb-3">
-				<li class="list-group-item"><b>Motivo:</b> ${consulta.motivo}</li>
-				<li class="list-group-item"><b>Consultorio:</b> <span class="consultorio">${consulta.numeroConsultorio}</span></li>
-				<li class="list-group-item"><b>Médico:</b> ${consulta.medico.nombre}</li>
-			</ul>
-
-			<form action="/paciente/consultas/horario/${consulta.id}" method="post" onsubmit="return validarHorario()">
+			<form action="/paciente/consultas/horario/${consulta.id}" method="post" onsubmit="return validarHorario()" style="max-width: 500px">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-				<div class="row">
-					<div class="col mb-3">
-						<label class="form-label">Hora de inicio</label>
-						<input type="time" name="horaInicio" id="horaInicio" class="form-control" value="${consulta.horaInicio}">
+
+				<fieldset>
+					<legend>Cita</legend>
+					<p>
+						<b>Motivo:</b> ${consulta.motivo}<br>
+						<b>Consultorio:</b> ${consulta.numeroConsultorio}<br>
+						<b>Médico:</b> ${consulta.medico.nombre}
+					</p>
+
+					<div class="row">
+						<div class="col">
+							<label for="horaInicio">Hora de inicio</label>
+							<input type="time" name="horaInicio" id="horaInicio" class="form-control" value="${consulta.horaInicio}">
+						</div>
+						<div class="col">
+							<label for="horaFin">Hora de finalización</label>
+							<input type="time" name="horaFin" id="horaFin" class="form-control" value="${consulta.horaFin}">
+						</div>
 					</div>
-					<div class="col mb-3">
-						<label class="form-label">Hora de finalización</label>
-						<input type="time" name="horaFin" id="horaFin" class="form-control" value="${consulta.horaFin}">
-					</div>
-				</div>
-				<button type="submit" class="btn btn-verde">Guardar horario</button>
-				<a href="/paciente/consultas" class="btn btn-outline-secondary">Cancelar</a>
+				</fieldset>
+
+				<p style="margin-top: 15px">
+					<button type="submit" class="boton">Guardar horario</button>
+					<a href="/paciente/consultas" class="boton boton-gris">Cancelar</a>
+				</p>
 			</form>
+			<%@ include file="/WEB-INF/views/pie.jsp"%>
 		</div>
 	</div>
 	<script src="/js/validaciones.js"></script>

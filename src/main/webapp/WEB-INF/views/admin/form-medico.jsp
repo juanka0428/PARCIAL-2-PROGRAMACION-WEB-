@@ -7,55 +7,58 @@
 <%@ include file="/WEB-INF/views/cabecera.jsp"%>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/encabezado.jsp"%>
-	<div class="container" style="max-width: 600px">
-		<div class="tarjeta">
+	<div class="pagina">
+		<%@ include file="/WEB-INF/views/encabezado.jsp"%>
+		<div class="contenido">
 			<c:choose>
 				<c:when test="${medico.id == null}">
-					<h4 class="titulo">Nuevo médico</h4>
+					<div><h2>Nuevo médico</h2></div>
 				</c:when>
 				<c:otherwise>
-					<h4 class="titulo">Editar médico</h4>
+					<div><h2>Editar médico</h2></div>
 				</c:otherwise>
 			</c:choose>
-			<hr>
 
 			<c:if test="${error != null}">
-				<div class="alert alert-danger">${error}</div>
+				<div class="aviso-error">${error}</div>
 			</c:if>
 
-			<form action="/admin/medicos/guardar" method="post" onsubmit="return validarMedico()">
+			<form action="/admin/medicos/guardar" method="post" onsubmit="return validarMedico()" style="max-width: 600px">
 				<input type="hidden" name="id" value="${medico.id}">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
-				<div class="mb-3">
-					<label class="form-label">Nombre</label>
+				<fieldset>
+					<legend>Datos del médico</legend>
+
+					<label for="nombre">Nombre</label>
 					<input type="text" name="nombre" id="nombre" class="form-control" maxlength="60" value="${medico.nombre}">
-				</div>
-				<div class="mb-3">
-					<label class="form-label">Especialidad</label>
+
+					<label for="especialidad">Especialidad</label>
 					<input type="text" name="especialidad" id="especialidad" class="form-control" maxlength="60"
 						value="${medico.especialidad}">
-				</div>
-				<div class="row">
-					<div class="col-md-6 mb-3">
-						<label class="form-label">Usuario</label>
-						<input type="text" name="usuario.username" id="username" class="form-control" maxlength="50"
-							value="${medico.usuario.username}">
-					</div>
-					<div class="col-md-6 mb-3">
-						<label class="form-label">Contraseña</label>
-						<input type="password" name="usuario.password" id="clave" class="form-control">
-						<c:if test="${medico.id != null}">
-							<small class="text-muted">Vacía para no cambiarla</small>
-						</c:if>
-					</div>
-				</div>
+				</fieldset>
+				<br>
+				<fieldset>
+					<legend>Usuario para ingresar</legend>
+
+					<label for="username">Usuario</label>
+					<input type="text" name="usuario.username" id="username" class="form-control" maxlength="50"
+						value="${medico.usuario.username}">
+
+					<label for="clave">Contraseña</label>
+					<input type="password" name="usuario.password" id="clave" class="form-control">
+					<c:if test="${medico.id != null}">
+						<span class="ayuda">Si la deja vacía no se cambia</span>
+					</c:if>
+				</fieldset>
 				<input type="hidden" id="esNuevo" value="${medico.id == null}">
 
-				<button type="submit" class="btn btn-verde mt-2">Guardar</button>
-				<a href="/admin/medicos" class="btn btn-outline-secondary mt-2">Cancelar</a>
+				<p style="margin-top: 15px">
+					<button type="submit" class="boton">Guardar</button>
+					<a href="/admin/medicos" class="boton boton-gris">Cancelar</a>
+				</p>
 			</form>
+			<%@ include file="/WEB-INF/views/pie.jsp"%>
 		</div>
 	</div>
 	<script src="/js/validaciones.js"></script>
